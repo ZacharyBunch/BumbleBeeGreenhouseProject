@@ -1,5 +1,5 @@
 # ============================================================
-# Compute DAILY DTR from tasmax/tasmin and CLIP to Pennsylvania
+# Compute DAILY DTR from tasmax/tasmin and CLIP to Pennsylvania (2025)
 # PA boundary pulled programmatically (no shapefile needed)
 # ============================================================
 
@@ -10,10 +10,10 @@ suppressPackageStartupMessages({
 })
 
 # ----------------------------
-# 1) OPEN TASMAX/TASMIN
+# 1) OPEN TASMAX/TASMIN (2025)
 # ----------------------------
-tasmax <- rast("tasmax_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc")
-tasmin <- rast("tasmin_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc")
+tasmax <- rast("tasmax_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2025_v2.0.nc")
+tasmin <- rast("tasmin_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2025_v2.0.nc")
 
 stopifnot(nlyr(tasmax) == nlyr(tasmin))
 stopifnot(all(time(tasmax) == time(tasmin)))
@@ -59,18 +59,10 @@ pa_daily <- global(dtr_pa, mean, na.rm = TRUE)
 names(pa_daily)[1] <- "DTR_PA_mean"
 pa_daily$date <- as.Date(time(dtr_pa))
 
-#Monthyl means
-pa_daily %>%
-  mutate(month = month(date, label = TRUE)) %>%
-  group_by(month) %>%
-  summarise(
-    mean_DTR = mean(DTR_PA_mean, na.rm = TRUE)
-  )
-#
 
 # Annual mean DTR (°C)
 mean(pa_daily$DTR_PA_mean, na.rm = TRUE)
-#12.05173
+#11.23613
 
 head(pa_daily)
 
@@ -80,4 +72,4 @@ head(pa_daily)
 plot(pa_daily$date, pa_daily$DTR_PA_mean, type = "l",
      xlab = "Date",
      ylab = "DTR (°C)",
-     main = "Pennsylvania Daily Mean DTR (ACCESS-CM2, SSP1-2.6, 2050)")
+     main = "Pennsylvania Daily Mean DTR (ACCESS-CM2, SSP1-2.6, 2025)")

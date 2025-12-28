@@ -12,8 +12,8 @@ suppressPackageStartupMessages({
 # ----------------------------
 # 1) OPEN TASMAX/TASMIN
 # ----------------------------
-tasmax <- rast("tasmax_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc")
-tasmin <- rast("tasmin_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc")
+tasmax <- rast("tasmax_day_ACCESS-CM2_ssp585_r1i1p1f1_gn_2050_v2.0.nc")
+tasmin <- rast("tasmin_day_ACCESS-CM2_ssp585_r1i1p1f1_gn_2050_v2.0.nc")
 
 stopifnot(nlyr(tasmax) == nlyr(tasmin))
 stopifnot(all(time(tasmax) == time(tasmin)))
@@ -59,18 +59,9 @@ pa_daily <- global(dtr_pa, mean, na.rm = TRUE)
 names(pa_daily)[1] <- "DTR_PA_mean"
 pa_daily$date <- as.Date(time(dtr_pa))
 
-#Monthyl means
-pa_daily %>%
-  mutate(month = month(date, label = TRUE)) %>%
-  group_by(month) %>%
-  summarise(
-    mean_DTR = mean(DTR_PA_mean, na.rm = TRUE)
-  )
-#
-
 # Annual mean DTR (°C)
 mean(pa_daily$DTR_PA_mean, na.rm = TRUE)
-#12.05173
+#10.95321
 
 head(pa_daily)
 
