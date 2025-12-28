@@ -4,3 +4,11 @@
 .Ruserdata
 BumbleBeeGreenhouseProject.Rproj
 BumbleBeeGreenhouseProject1.Rproj
+BumbleBeeGreenhouseProject
+DTR_Calc.R
+tasmax_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2025_v2.0.nc
+tasmax_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc
+tasmax_day_ACCESS-CM2_ssp585_r1i1p1f1_gn_2050_v2.0.nc
+tasmin_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2025_v2.0.nc
+tasmin_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_2050_v2.0.nc
+tasmin_day_ACCESS-CM2_ssp585_r1i1p1f1_gn_2050_v2.0.nc
